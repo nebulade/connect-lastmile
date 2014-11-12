@@ -1,0 +1,26 @@
+{
+  "name": "connect-lastmile",
+  "version": "0.0.1",
+  "description": "Last mile response handlers for connect/express",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gramakri/lastmile"
+  },
+  "keywords": [
+    "connect",
+    "express"
+  ],
+  "author": "Girish Ramakrishnan <girish@forwardbias.in>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gramakri/lastmile/issues"
+  },
+  "homepage": "https://github.com/gramakri/lastmile",
+  "dependencies": {
+    "debug": "~2.1.0"
+  }
+}
