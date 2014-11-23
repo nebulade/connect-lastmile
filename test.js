@@ -13,7 +13,7 @@ var connectLastMile = require('./lib/index.js'),
 
 describe('Exports', function () {
     it('has exported composited handler', function () {
-        expect(connectLastMile.lastMile).to.be.an(Array);
+        expect(connectLastMile()).to.be.an(Array);
     });
 
     it('has exported success class', function () {
