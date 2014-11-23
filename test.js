@@ -7,7 +7,9 @@
 'use strict';
 
 var connectLastMile = require('./lib/index.js'),
-    expect = require('expect.js');
+    expect = require('expect.js'),
+    HttpError = connectLastMile.HttpError,
+    HttpSuccess = connectLastMile.HttpSuccess;
 
 describe('Exports', function () {
     it('has exported individual handlers', function () {
@@ -26,6 +28,24 @@ describe('Exports', function () {
 
     it('has exported error class', function () {
         expect(connectLastMile.HttpError).to.be.a(Function);
+    });
+});
+
+describe('HttpSuccess', function () {
+    it('throws for non-numeric status code', function () {
+        expect(function () { new HttpSuccess('200', { }); }).to.throwError();
+    });
+    it('throws for non-object body', function () {
+        expect(function () { new HttpSuccess(200, 'what'); }).to.throwError();
+    });
+    it('throws for array body', function () {
+        expect(function () { new HttpSuccess(200, [1, 2]); }).to.throwError();
+    });
+    it('succeeds for object body', function () {
+        expect(function () { new HttpSuccess(200, { }); }).to.not.throwError();
+    });
+    it('succeeds for no body', function () {
+        expect(function () { new HttpSuccess(200); }).to.not.throwError();
     });
 });
 
