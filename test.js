@@ -49,3 +49,31 @@ describe('HttpSuccess', function () {
     });
 });
 
+describe('HttpError', function () {
+    it('throws for non-numeric status code', function () {
+        expect(function () { new HttpError('200', { }); }).to.throwError();
+    });
+    it('throws for no body', function () {
+        expect(function () { new HttpError(400); }).to.throwError();
+    });
+    it('throws for object body', function () {
+        expect(function () { new HttpError(400, { }); }).to.throwError();
+    });
+    it('throws for array body', function () {
+        expect(function () { new HttpError(400, [1, 2]); }).to.throwError();
+    });
+    it('succeeds for string body', function () {
+        var e;
+        expect(function () { e = new HttpError(200, 'bad things'); }).to.not.throwError();
+        expect(e.message).to.eql('bad things');
+        expect(e.internalError).to.eql(null);
+    });
+    it('succeeds for error body', function () {
+        var e;
+        expect(function () { e = new HttpError(200, new Error('bad things')); }).to.not.throwError();
+        expect(e.message).to.eql('Internal error');
+        expect(e.internalError).to.be.an(Error);
+        expect(e.internalError.message).to.eql('bad things');
+    });
+});
+
