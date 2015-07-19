@@ -1,6 +1,6 @@
 {
   "name": "connect-lastmile",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Last mile response handlers for connect/express",
   "main": "lib/index.js",
   "scripts": {
